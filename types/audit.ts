@@ -1,5 +1,13 @@
 export type MetricStatus = "success" | "warning" | "error" | "neutral";
 
+export interface CategoryScores {
+  responseTime: number;
+  metadata: number;
+  accessibility: number;
+  headings: number;
+  content: number;
+}
+
 export interface AuditMetrics {
   status: number;
   responseTime: number;
@@ -9,4 +17,5 @@ export interface AuditMetrics {
   missingAlt: number;
   wordCount: number;
   healthScore: number;
+  categoryScores: CategoryScores;
 }

@@ -6,24 +6,12 @@ interface ScoreBreakdownProps {
 }
 
 export function ScoreBreakdown({ data }: ScoreBreakdownProps) {
-  // Simple heuristic derivation of breakdown from the overall healthScore.
-  // Calculate relative scores out of their max points
-  const responseScore = data.responseTime < 200 ? 20 : data.responseTime < 500 ? 15 : 10;
-  
-  const metaScore = (data.title ? 10 : 0) + (data.metaDescription ? 10 : 0);
-  
-  const accessibilityScore = data.missingAlt === 0 ? 20 : data.missingAlt < 5 ? 10 : 5;
-  
-  const headingScore = data.h1Count === 1 ? 20 : data.h1Count === 0 ? 0 : 10;
-  
-  const contentScore = data.wordCount > 300 ? 20 : 10;
-
   const categories = [
-    { name: "Response Time", score: responseScore, max: 20 },
-    { name: "Metadata", score: metaScore, max: 20 },
-    { name: "Accessibility", score: accessibilityScore, max: 20 },
-    { name: "Heading Structure", score: headingScore, max: 20 },
-    { name: "Content", score: contentScore, max: 20 },
+    { name: "Response Time", score: data.categoryScores.responseTime, max: 20 },
+    { name: "Metadata", score: data.categoryScores.metadata, max: 20 },
+    { name: "Accessibility", score: data.categoryScores.accessibility, max: 20 },
+    { name: "Heading Structure", score: data.categoryScores.headings, max: 20 },
+    { name: "Content", score: data.categoryScores.content, max: 20 },
   ];
 
   return (

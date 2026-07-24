@@ -9,28 +9,24 @@ interface InsightsPanelProps {
 export function InsightsPanel({ data }: InsightsPanelProps) {
   const insights = [];
 
-  // Response Time
   if (data.responseTime < 200) {
     insights.push({ type: "success", text: "Excellent response time" });
   } else if (data.responseTime > 500) {
     insights.push({ type: "warning", text: "Slow server response time detected" });
   }
 
-  // HTTP Status
   if (data.status === 200) {
     insights.push({ type: "success", text: "HTTP 200 returned successfully" });
   } else {
     insights.push({ type: "error", text: `Non-standard HTTP status: ${data.status}` });
   }
 
-  // Headings
   if (data.h1Count === 0) {
     insights.push({ type: "error", text: "Missing primary H1 heading" });
   } else if (data.h1Count > 1) {
     insights.push({ type: "warning", text: "Multiple H1 tags detected" });
   }
 
-  // Meta
   if (data.metaDescription) {
     insights.push({ type: "success", text: "Meta description detected" });
   } else {
@@ -43,7 +39,6 @@ export function InsightsPanel({ data }: InsightsPanelProps) {
     insights.push({ type: "error", text: "Missing page title" });
   }
 
-  // Alt Tags
   if (data.missingAlt > 0) {
     insights.push({ type: "warning", text: `Missing ALT attributes on ${data.missingAlt} images` });
   }

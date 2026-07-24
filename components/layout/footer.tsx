@@ -1,17 +1,19 @@
-import { siteConfig } from "@/config/site";
 
 export function Footer() {
   return (
-    <footer className="w-full border-t border-border-neutral py-6 mt-auto">
-      <div className="container mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-8 md:flex-row">
-        <p className="text-sm text-text-muted">
-          &copy; {new Date().getFullYear()} {siteConfig.author}. All rights reserved.
+    <footer className="w-full border-t border-border-neutral py-8 mt-auto">
+      <div className="container mx-auto flex flex-col items-center justify-center gap-2 px-8 text-center">
+        <p className="text-sm font-medium text-text-muted">
+          &copy; 2026 Rahul Barman
         </p>
-        <div className="flex items-center space-x-4">
-          <p className="text-xs font-medium text-text-muted">
-            {siteConfig.tagline}
-          </p>
-        </div>
+        <a 
+          href="https://digitalheroesco.com" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="text-sm font-medium text-text-muted transition-all duration-200 hover:text-accent-primary hover:underline hover:opacity-100"
+        >
+          Built for Digital Heroes Training Task
+        </a>
       </div>
     </footer>
   );

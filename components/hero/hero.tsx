@@ -74,17 +74,17 @@ export function Hero({ isCentered = true, ...inputProps }: HeroProps) {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.2 }}
-            className="mt-12 flex w-full max-w-xl flex-row flex-wrap items-center justify-center gap-6 text-sm font-medium text-text-secondary sm:justify-between"
+            className="mt-12 mb-[64px] flex w-full flex-col sm:flex-row flex-wrap items-center justify-center gap-8 md:gap-10 lg:gap-12 text-sm font-medium text-text-secondary"
           >
-            <div className="flex items-center space-x-2 transition-colors hover:text-text-primary">
+            <div className="flex items-center space-x-2 whitespace-nowrap transition-colors hover:text-text-primary">
               <Zap className="h-4 w-4 text-accent-primary" />
               <span>Sub-Second Audits</span>
             </div>
-            <div className="flex items-center space-x-2 transition-colors hover:text-text-primary">
+            <div className="flex items-center space-x-2 whitespace-nowrap transition-colors hover:text-text-primary">
               <ShieldCheck className="h-4 w-4 text-accent-primary" />
               <span>Enterprise Grade</span>
             </div>
-            <div className="flex items-center space-x-2 transition-colors hover:text-text-primary">
+            <div className="flex items-center space-x-2 whitespace-nowrap transition-colors hover:text-text-primary">
               <Code2 className="h-4 w-4 text-accent-primary" />
               <span>Technical SEO</span>
             </div>

@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { MetricCard } from "./metric-card";
 import { HealthScoreCard } from "./health-score";
@@ -24,6 +25,8 @@ interface DashboardProps {
 }
 
 export function AuditDashboard({ url, data, onReset }: DashboardProps) {
+  const [copied, setCopied] = useState(false);
+
   const container = {
     hidden: { opacity: 0 },
     show: {
@@ -47,6 +50,28 @@ export function AuditDashboard({ url, data, onReset }: DashboardProps) {
     return issues.slice(0, 3);
   };
 
+  const handleExportJson = () => {
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+    const urlBlob = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = urlBlob;
+    a.download = `audit-report-${new Date().getTime()}.json`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(urlBlob);
+  };
+
+  const handleCopyReport = async () => {
+    try {
+      await navigator.clipboard.writeText(JSON.stringify(data, null, 2));
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
   return (
     <motion.div
       variants={container}
@@ -59,10 +84,7 @@ export function AuditDashboard({ url, data, onReset }: DashboardProps) {
       </motion.div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-        
-        {/* Left Column - Metrics & Details */}
         <div className="col-span-1 lg:col-span-8 flex flex-col gap-6">
-          
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <motion.div variants={item} className="col-span-1">
               <MetricCard
@@ -112,10 +134,7 @@ export function AuditDashboard({ url, data, onReset }: DashboardProps) {
               <RecommendationsPanel data={data} />
             </motion.div>
           </div>
-
         </div>
-
-        {/* Right Column - Scoring & Actions */}
         <div className="col-span-1 lg:col-span-4 flex flex-col gap-6">
           <motion.div variants={item}>
             <HealthScoreCard
@@ -132,19 +151,28 @@ export function AuditDashboard({ url, data, onReset }: DashboardProps) {
 
           <motion.div variants={item} className="flex flex-col gap-3">
             <div className="grid grid-cols-2 gap-3">
-              <button className="flex h-12 items-center justify-center space-x-2 rounded-xl border border-border-neutral bg-background-card-glass text-sm font-semibold text-text-primary transition-colors hover:bg-border-focus">
+              <button 
+                onClick={handleExportJson}
+                className="flex h-12 items-center justify-center space-x-2 rounded-xl border border-border-neutral bg-background-card-glass text-sm font-semibold text-text-primary transition-colors hover:bg-border-focus focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary"
+                aria-label="Export JSON"
+              >
                 <Download className="h-4 w-4" />
                 <span>Export JSON</span>
               </button>
-              <button className="flex h-12 items-center justify-center space-x-2 rounded-xl border border-border-neutral bg-background-card-glass text-sm font-semibold text-text-primary transition-colors hover:bg-border-focus">
-                <Copy className="h-4 w-4" />
-                <span>Copy Report</span>
+              <button 
+                onClick={handleCopyReport}
+                className="flex h-12 items-center justify-center space-x-2 rounded-xl border border-border-neutral bg-background-card-glass text-sm font-semibold text-text-primary transition-colors hover:bg-border-focus focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary"
+                aria-label="Copy Report"
+              >
+                {copied ? <CheckCircle2 className="h-4 w-4 text-accent-primary" /> : <Copy className="h-4 w-4" />}
+                <span>{copied ? "Copied" : "Copy Report"}</span>
               </button>
             </div>
             
             <button 
               onClick={onReset}
-              className="flex h-14 w-full items-center justify-center space-x-2 rounded-xl bg-accent-primary text-sm font-semibold text-background-main transition-colors hover:bg-accent-primary/90"
+              className="flex h-14 w-full items-center justify-center space-x-2 rounded-xl bg-accent-primary text-sm font-semibold text-background-main transition-colors hover:bg-accent-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+              aria-label="Analyze Another Website"
             >
               <RotateCcw className="h-4 w-4" />
               <span>Analyze Another Website</span>
