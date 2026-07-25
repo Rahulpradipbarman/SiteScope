@@ -36,7 +36,7 @@ export function Hero({ isCentered = true, ...inputProps }: HeroProps) {
               <Activity className="h-8 w-8 text-accent-primary" />
             </div>
             
-            <h1 className="mb-4 bg-gradient-to-br from-white to-text-muted bg-clip-text text-5xl font-extrabold tracking-tighter text-transparent sm:text-7xl">
+            <h1 className="mb-2 sm:mb-3 pb-2 sm:pb-3 bg-gradient-to-br from-white to-text-muted bg-clip-text text-5xl font-extrabold tracking-tighter text-transparent sm:text-7xl leading-[1.15]">
               {siteConfig.name}
             </h1>
             
