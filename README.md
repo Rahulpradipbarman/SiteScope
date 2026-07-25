@@ -1,12 +1,12 @@
 # Page Pulse
 
-Page Pulse is a modern Website SEO & Performance Audit Tool built with Next.js 15. It analyzes public websites and provides real-time SEO insights including page metadata, response time, heading structure, image accessibility, and content statistics through a high-performance dashboard.
+Page Pulse is a modern Website SEO & Performance Audit Tool built with Next.js 15. It analyzes public websites and provides real-time SEO insights including page metadata, response time, heading structure, image accessibility, and content statistics through a premium responsive dashboard.
 
 ---
 
 ## Features
 
-- **Website SEO Audit:** Performs automated technical audits on target URLs.
+- **Website SEO & Performance Audit:** Performs automated technical audits on target URLs.
 - **Response Time Measurement:** Measures overall server response time.
 - **HTTP Status Detection:** Identifies response status codes including success (200), redirects, and client/server errors (404, 500).
 - **Page Title Extraction:** Inspects presence, length, and optimal bounds for HTML `<title>` tags.
@@ -37,7 +37,7 @@ Page Pulse is a modern Website SEO & Performance Audit Tool built with Next.js 1
 ## Project Structure
 
 ```
-SiteScope/
+Project Structure
 ├── app/          # Next.js App Router pages, layout, and global styles
 ├── components/   # Modular React UI components (dashboard, hero, layout, UI primitives)
 ├── services/     # Server-side audit service execution logic
@@ -138,25 +138,28 @@ npm test
 
 ## Deployment
 
-- **Live Demo:** (Coming Soon)
+- **Live Demo:** https://pagepulse-three-theta.vercel.app/
 - **GitHub Repository:** https://github.com/Rahulpradipbarman/SiteScope
 
 ---
 
 ## AI Usage
 
-AI tools were used during development for brainstorming, architecture planning, UI refinement, debugging, and code review, while implementation decisions, validation, and integration were executed by the developer.
+AI tools were used to assist with architecture planning, UI refinement, debugging, automated test generation, documentation, and code review. All implementation decisions, integration, validation, testing, and final review were completed by the developer.
 
 ---
 
 ## Future Improvements
 
-- **Lighthouse Integration:** Incorporate Google Lighthouse CLI for performance scoring.
-- **Core Web Vitals:** Measure LCP, FID, and CLS metrics.
-- **Open Graph & Social Cards:** Audit Open Graph, Twitter Card, and JSON-LD schema markup.
-- **Robots.txt Analysis:** Validate crawling permissions and directive configurations.
-- **Sitemap.xml Validation:** Check sitemap availability and XML structure.
-- **PDF Report Export:** Enable downloadable formatted PDF audit summaries.
+- Replace mock audit generation with real HTML parsing using Cheerio
+- Lighthouse integration for advanced performance metrics
+- Core Web Vitals analysis (LCP, CLS, INP)
+- Open Graph, Twitter Card, and structured data auditing
+- robots.txt validation
+- sitemap.xml analysis
+- PDF audit report export
+- Export audit history
+- Batch website auditing
 
 ---
 
