@@ -8,15 +8,15 @@ export function Navbar() {
       <div className="container mx-auto flex h-16 max-w-7xl items-center justify-between px-3 sm:px-6 md:px-8 gap-2 sm:gap-4 md:gap-6">
         <Link 
           href={ROUTES.home}
-          className="flex shrink-0 items-center space-x-2 rounded-md transition-opacity hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary"
+          className="flex shrink-0 items-center space-x-2.5 rounded-md transition-opacity hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary"
         >
-          <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-accent-primary/10 text-accent-primary">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5">
+          <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-accent-primary/10 text-accent-primary border border-accent-primary/20 shadow-[0_0_12px_rgba(16,185,129,0.15)]">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="h-4.5 w-4.5">
               <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
             </svg>
           </div>
-          <span className="tracking-tight font-semibold text-text-primary whitespace-nowrap">
-            {siteConfig.name}
+          <span className="tracking-tight font-bold text-text-primary whitespace-nowrap text-base sm:text-lg">
+            Page <span className="text-accent-primary">Pulse</span>
           </span>
         </Link>
         <nav className="flex shrink-0 items-center space-x-3 sm:space-x-6">

@@ -1,6 +1,6 @@
-# SiteScope
+# Page Pulse
 
-SiteScope is a modern Website SEO & Performance Audit Tool built with Next.js 15. It analyzes public websites and provides real-time SEO insights including page metadata, response time, heading structure, image accessibility, and content statistics through a high-performance dashboard.
+Page Pulse is a modern Website SEO & Performance Audit Tool built with Next.js 15. It analyzes public websites and provides real-time SEO insights including page metadata, response time, heading structure, image accessibility, and content statistics through a high-performance dashboard.
 
 ---
 
