@@ -21,8 +21,8 @@ export default function Home() {
         onChange={setUrl}
         onSubmit={() => performAudit()}
         disabled={state === "loading"}
-        errorState={state === "error" && error?.type === "INVALID_URL"}
-        isCentered={state === "idle" || (state === "error" && error?.type === "INVALID_URL")}
+        errorState={state === "error"}
+        isCentered={state === "idle"}
       />
 
       <div className="w-full max-w-[1400px] px-4">
@@ -70,13 +70,14 @@ export default function Home() {
             </motion.div>
           ) : null}
 
-          {state === "error" && error && error.type !== "INVALID_URL" ? (
+          {state === "error" && error ? (
             <motion.div
               key="error"
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -16 }}
               transition={ANIMATION.ease}
+              className="flex w-full items-center justify-center py-6 pb-20"
             >
               <ErrorPanel error={error} onRetry={reset} />
             </motion.div>

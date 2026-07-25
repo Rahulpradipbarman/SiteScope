@@ -1,8 +1,8 @@
 import { useState, useCallback } from "react";
-import { AuditService } from "@/services/audit.service";
+import { performAudit as performAuditAction } from "@/services/audit.service";
 import type { AuditMetrics } from "@/types/audit";
 import type { AppError } from "@/types/error";
-import { isValidUrl, formatUrlInput } from "@/lib/validator";
+import { isValidUrl, normalizeUrl } from "@/lib/validator";
 import { APP_CONSTANTS } from "@/constants/app";
 
 type AuditState = "idle" | "loading" | "success" | "error";
@@ -21,9 +21,10 @@ export function useAudit() {
   }, []);
 
   const performAudit = useCallback(async (targetUrl: string = url) => {
-    const formattedUrl = formatUrlInput(targetUrl);
+    const formattedUrl = normalizeUrl(targetUrl);
     
     if (!isValidUrl(formattedUrl)) {
+      setData(null);
       setState("error");
       setError({
         type: "INVALID_URL",
@@ -33,20 +34,23 @@ export function useAudit() {
     }
 
     setUrl(formattedUrl);
+    setData(null);
     setState("loading");
     setError(null);
 
     try {
-      const response = await AuditService.performAudit({ url: formattedUrl });
+      const response = await performAuditAction({ url: formattedUrl });
 
       if (response.success) {
         setData(response.data);
         setState("success");
       } else {
+        setData(null);
         setError(response.error);
         setState("error");
       }
     } catch {
+      setData(null);
       setError({
         type: "UNKNOWN_ERROR",
         message: APP_CONSTANTS.errorMessages.serverError,

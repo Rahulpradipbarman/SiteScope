@@ -24,7 +24,7 @@ export function UrlInput({ value, onChange, onSubmit, disabled, errorState, clas
   return (
     <div
       className={cn(
-        "group relative mx-auto flex w-full max-w-[768px] flex-row items-center rounded-2xl border bg-background-card-glass p-2 shadow-sm transition-all duration-300",
+        "group relative mx-auto flex w-full max-w-[768px] flex-row items-center rounded-2xl border bg-background-card-glass p-1.5 sm:p-2 shadow-sm transition-all duration-300",
         "focus-within:border-accent-primary focus-within:ring-2 focus-within:ring-accent-primary/20 focus-within:shadow-[0_0_30px_rgba(16,185,129,0.15)]",
         errorState 
           ? "border-accent-error focus-within:border-accent-error focus-within:ring-accent-error/20 focus-within:shadow-[0_0_30px_rgba(239,68,68,0.15)]" 
@@ -32,9 +32,9 @@ export function UrlInput({ value, onChange, onSubmit, disabled, errorState, clas
         className
       )}
     >
-      <Search className="ml-4 mr-3 h-5 w-5 text-text-muted transition-colors group-focus-within:text-accent-primary" />
+      <Search className="ml-2.5 sm:ml-4 mr-1.5 sm:mr-3 h-5 w-5 shrink-0 text-text-muted transition-colors group-focus-within:text-accent-primary" />
       
-      <span className="pointer-events-none font-mono text-lg text-text-muted opacity-50">
+      <span className="pointer-events-none hidden sm:inline-block font-mono text-lg text-text-muted opacity-50 shrink-0">
         https://
       </span>
       
@@ -43,7 +43,7 @@ export function UrlInput({ value, onChange, onSubmit, disabled, errorState, clas
         onChange={handleChange}
         onKeyDown={handleKeyDown}
         disabled={disabled}
-        className="ml-1 h-12 flex-1 bg-transparent px-2 font-mono text-lg text-text-primary placeholder:text-text-muted focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
+        className="ml-1 h-11 sm:h-12 min-w-0 flex-1 bg-transparent px-1 sm:px-2 font-mono text-base sm:text-lg text-text-primary placeholder:text-text-muted focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
         placeholder="example.com"
         aria-label="Target Website URL"
         autoComplete="off"
@@ -56,7 +56,7 @@ export function UrlInput({ value, onChange, onSubmit, disabled, errorState, clas
         onClick={onSubmit}
         disabled={disabled || !displayValue.trim()}
         isLoading={disabled}
-        className="ml-2 h-12 rounded-xl px-8 font-semibold shadow-sm"
+        className="ml-1.5 sm:ml-2 h-11 sm:h-12 shrink-0 rounded-xl px-4 sm:px-8 text-sm sm:text-base font-semibold shadow-sm min-h-[44px]"
       >
         {APP_CONSTANTS.labels.analyzeButton}
       </Button>

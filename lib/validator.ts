@@ -3,11 +3,14 @@ export function isValidUrl(url: string): boolean {
     const trimmed = url.trim();
     if (!trimmed) return false;
     
+    if (!/^https?:\/\//i.test(trimmed)) return false;
+
     const parsed = new URL(trimmed);
     if (!["http:", "https:"].includes(parsed.protocol)) return false;
     
     const hostname = parsed.hostname;
     if (!hostname.includes(".") && hostname !== "localhost") return false;
+    if (hostname.length < 3) return false;
     
     return true;
   } catch {
@@ -15,7 +18,7 @@ export function isValidUrl(url: string): boolean {
   }
 }
 
-export function formatUrlInput(input: string): string {
+export function normalizeUrl(input: string): string {
   const trimmed = input.trim();
   if (!trimmed) return "";
   
