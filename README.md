@@ -115,11 +115,23 @@ The application categorizes and surfaces errors distinctly:
 
 ## Testing
 
-Automated testing suite integration is scheduled for completion in Task B.
+The project includes an automated unit testing suite built with Vitest to validate the core audit service.
+
+Current test coverage includes:
+
+- Successful audit execution
+- HTTP error handling
+- Unsupported content type validation
+- Missing Content-Type header handling
+- Request timeout handling
+- DNS / network failure handling
+- Custom timeout configuration
+- Verification of mock audit generation behavior
+
+Run the test suite:
 
 ```bash
-# Test execution command (Task B)
-npm run test
+npm test
 ```
 
 ---
